@@ -1,6 +1,5 @@
-var Bing = require('node-bing-api')({accKey: process.env.BING_KEY});
-
 require('dotenv').load();
+var Bing = require('node-bing-api')({accKey: process.env.BING_KEY});
 
 module.exports = function(MongoClient, mongo_url, app){
   app.get('/', function(req, res){

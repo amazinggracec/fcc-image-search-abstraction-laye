@@ -10,6 +10,6 @@ var searches = require('./search.js');
 searches(MongoClient, mongo_url, app);
 
 //to start server
-app.listen(port || 8080, /*process.env.IP || "0.0.0.0",*/ function(){
+app.listen(port || 8080, process.env.IP || "0.0.0.0", function(){
     console.log("server listening at", port);
 });
