@@ -28,10 +28,10 @@ searches(MongoClient, mongo_url, app);*/
               return {term: obj.term, when: obj.when};
             });
             res.send(response);
-          db.close();
+
         });
       });
-        res.send("ok");
+      db.close();
     });
   });
 //to start server
