@@ -12,6 +12,7 @@ var mongo_url = process.env.MONGO_URI;
 searches(MongoClient, mongo_url, app);*/
 //home(MongoClient, mongo_url, app);
   app.get('/', function(req, res){
+      res.send("hi");
       MongoClient.connect(mongo_url, function(err, db){
         if (err) throw err;
         /*var searches = db.collection("searches");
