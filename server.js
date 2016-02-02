@@ -14,7 +14,9 @@ searches(MongoClient, mongo_url, app);*/
   app.get('/', function(req, res){
 
       MongoClient.connect(mongo_url, function(err, db){
+        res.send("1");
         if (err) throw err;
+
         /*var searches = db.collection("searches");
         searches.count({id: {$ne: 0}}, function(err, count){
           if (err) throw err;
