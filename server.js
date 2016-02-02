@@ -12,9 +12,9 @@ var mongo_url = process.env.MONGO_URI;
 searches(MongoClient, mongo_url, app);*/
 //home(MongoClient, mongo_url, app);
   app.get('/', function(req, res){
-      /*MongoClient.connect(mongo_url, function(err, db){
+      MongoClient.connect(mongo_url, function(err, db){
         if (err) throw err;
-        var searches = db.collection("searches");
+        /*var searches = db.collection("searches");
         searches.count({id: {$ne: 0}}, function(err, count){
           if (err) throw err;
           searches.find({
@@ -28,8 +28,9 @@ searches(MongoClient, mongo_url, app);*/
             res.send(response);
           db.close();
         });
-      });
-    });*/
+      });*/
+        res.send("ok");
+    });
   });
 //to start server
 app.listen(port || 8080, process.env.IP || "0.0.0.0", function(){
