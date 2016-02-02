@@ -12,7 +12,7 @@ var mongo_url = process.env.MONGO_URI;
 searches(MongoClient, mongo_url, app);*/
 //home(MongoClient, mongo_url, app);
   app.get('/', function(req, res){
-      res.send("hi");
+
       MongoClient.connect(mongo_url, function(err, db){
         if (err) throw err;
         /*var searches = db.collection("searches");
@@ -26,10 +26,10 @@ searches(MongoClient, mongo_url, app);*/
             var response = documents.map(function(obj){
               return {term: obj.term, when: obj.when};
             });
-            res.send(response);
+            res.send(response);*/
           db.close();
-        });
-      });*/
+        //});
+      //});
         res.send("ok");
     });
   });
