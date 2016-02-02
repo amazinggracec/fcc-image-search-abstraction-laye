@@ -15,7 +15,7 @@ module.exports = function(MongoClient, mongo_url, app){
       MongoClient.connect(mongo_url, function(err, db){
         if (err) throw err;
         var searches = db.collection("searches");
-        searches.count({search: {$ne: ""}}, function(err, count){
+        searches.count({id: {$ne: 0}}, function(err, count){
           if (err) throw err;
           searches.insert({id: ++count, term: terms, when: date.toUTCString()});
           db.close();
@@ -34,7 +34,7 @@ module.exports = function(MongoClient, mongo_url, app){
             context: obj.SourceUrl 
           };
         });
-        res.json(results2);
+        res.send(results2);
       });
     }
   });
