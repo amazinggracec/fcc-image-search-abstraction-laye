@@ -7,9 +7,9 @@ var MongoClient = require('mongodb').MongoClient;
 var mongo_url = process.env.MONGO_URI;
 
 var searches = require('./search.js');
-var index = require('./index.js');
+var home = require('./index.js');
 
-index(MongoClient, mongo_url, app);
+home(MongoClient, mongo_url, app);
 searches(MongoClient, mongo_url, app);
 
 //to start server
