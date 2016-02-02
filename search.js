@@ -1,5 +1,4 @@
 var Bing = require('node-bing-api')({accKey: process.env.BING_KEY});
-var url = require('url');
 
 require('dotenv').load();
 
@@ -32,7 +31,6 @@ module.exports = function(MongoClient, mongo_url, app){
     var pageSize = 0;
     if (req.query.offset != null){
       pageSize = Number(req.query.offset.match(/[0-9]+/g));
-      console.log(pageSize);
     }
       
     //get image details and send back to client
