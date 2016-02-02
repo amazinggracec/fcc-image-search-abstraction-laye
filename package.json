@@ -14,5 +14,8 @@
     "express": "^4.13.4",
     "mongodb": "^2.1.4",
     "node-bing-api": "^2.3.0"
-  }
+  }, 
+  "engines": {
+    "node": "4.1.1"
+  },
 }
