@@ -31,7 +31,18 @@ module.exports = function(MongoClient, mongo_url, app){
     if (req.query.offset != null){
       pageSize = Number(req.query.offset.match(/[0-9]+/g));
     }
-      
+    
+    /*save query to database*/
+    MongoClient.connect(mongo_url, function(err, db){
+      if (err) throw err;
+      var searches = db.collection("searches");
+      searches.count({search: {$ne: ""}}, function(err, count){
+        if (err) throw err;
+        searches.insert({id: ++count, term: terms, when: date.toUTCString()});
+        db.close();
+      });
+    });
+    
     //get image details and send back to client
     Bing.images(terms, {top: 10, skip: pageSize}, function(err, response, body){
       if (err) throw err;
@@ -44,19 +55,7 @@ module.exports = function(MongoClient, mongo_url, app){
           context: obj.SourceUrl 
         };
       });
-    
       res.json(results2);
-    });
-    
-    /*save query to database*/
-    MongoClient.connect(mongo_url, function(err, db){
-      if (err) throw err;
-      var searches = db.collection("searches");
-      searches.count({search: {$ne: ""}}, function(err, count){
-        if (err) throw err;
-        searches.insert({id: ++count, term: terms, when: date.toUTCString()});
-        db.close();
-      });
     });
   });
 };
